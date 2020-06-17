@@ -43,18 +43,20 @@ public class Player : MonoBehaviour
     [SerializeField] AudioSource shurikenSound;
     [SerializeField] AudioSource bleedSound;
     [SerializeField] AudioSource diamonSound;
-
+    private bool soundEffectOK = true;
 
     void Start()
     {
-        
+
+
+        Time.timeScale = 1f;
+        backGroundMusic.Play();
         playerRigidbody = GetComponent<Rigidbody2D>();
         playerAnimator = GetComponent<Animator>();
         isdoublejumpOK = false;
         circleCollider = GetComponent<CircleCollider2D>();
         boxCollider = GetComponent<BoxCollider2D>();
-        //Player Background music when game starts
-        backGroundMusic.Play();
+        
         //Display the longest distance the player has reached so far
         longestDistance = PlayerPrefs.GetFloat("LongestDistance");
         longestDistanceText.text = PlayerPrefs.GetFloat("LongestDistance").ToString("f0");
@@ -63,7 +65,17 @@ public class Player : MonoBehaviour
 
         //get player Render's color component 
         playerColor = GetComponent<Renderer>().material.color;
-       
+        
+        //Get backgroundmusic Volume
+        Debug.Log("BackgroundMusic" + PlayerPrefs.GetFloat("BackgroundMusicVolume").ToString());
+        backGroundMusic.volume = PlayerPrefs.GetFloat("BackgroundMusicVolume");
+        //Get soundeffect Volume
+        Debug.Log("BackgroundMusic" + PlayerPrefs.GetFloat("SoundEffectVolume").ToString());
+        energyBottleSound.volume = PlayerPrefs.GetFloat("SoundEffectVolume");
+        jumpSound.volume = PlayerPrefs.GetFloat("SoundEffectVolume");
+        shurikenSound.volume = PlayerPrefs.GetFloat("SoundEffectVolume");
+        bleedSound.volume = PlayerPrefs.GetFloat("SoundEffectVolume");
+        diamonSound.volume = PlayerPrefs.GetFloat("SoundEffectVolume");
 
     }
 
@@ -172,9 +184,13 @@ public class Player : MonoBehaviour
 
     void Attack()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        if (Input.GetKeyDown(KeyCode.Mouse1))
         {
-            shurikenSound.Play();
+            //make sure there is no sound effect trigger before the background story fade away with wrong key press
+            if (soundEffectOK)
+            {
+                shurikenSound.Play();
+            }
             Instantiate(weapon,shootPoint.position,shootPoint.rotation);
         }
     }
@@ -214,7 +230,11 @@ public class Player : MonoBehaviour
             
             if (isOnTheGround) 
             {
-                jumpSound.Play();
+                //make sure there is no sound effect trigger before the background story fade away with wrong key press
+                if (soundEffectOK)
+                {
+                    jumpSound.Play();
+                }
                 jumping = true;
                 isdoublejumpOK = true;
                 jumpTimeCountDown = jumpAvaiableTime;
@@ -223,7 +243,11 @@ public class Player : MonoBehaviour
             } else if (isdoublejumpOK)
             {
                 Debug.Log("Double Jump");
-                jumpSound.Play();
+                //make sure there is no sound effect trigger before the background story fade away with wrong key press
+                if (soundEffectOK)
+                {
+                    jumpSound.Play();
+                }
                 playerRigidbody.velocity = new Vector2(playerRigidbody.velocity.x, jumpHeight);
                 jumpTimeCountDown = jumpAvaiableTime;
                 //Dust effect when it jump
@@ -302,7 +326,16 @@ public class Player : MonoBehaviour
   public void PlayDiamondSoud()
   {
         diamonSound.Play();
-    }
-
+  }
   
+  public void PlayBackgroundMusic()
+  {
+        backGroundMusic.Play();
+  }
+  
+
+  public void ToggleSoundEffectOK(bool reference)
+  {
+        soundEffectOK = reference;
+  }
 }

@@ -49,8 +49,7 @@ public class Player : MonoBehaviour
     {
 
 
-        Time.timeScale = 1f;
-        backGroundMusic.Play();
+        Time.timeScale = 0f;
         playerRigidbody = GetComponent<Rigidbody2D>();
         playerAnimator = GetComponent<Animator>();
         isdoublejumpOK = false;

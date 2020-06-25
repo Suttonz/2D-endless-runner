@@ -17,6 +17,7 @@ TagManager:
   - TurnLeft
   - Shuriken
   - WeaponDestroyPoint
+  - Grass
   layers:
   - Default
   - TransparentFX
@@ -28,11 +29,11 @@ TagManager:
   - 
   - Ground
   - Energy
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Platform
+  - Water
+  - Obstable
+  - Grass
+  - Ladder
   - 
   - 
   - 

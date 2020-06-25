@@ -42,6 +42,7 @@ public class BackgroundStoryFade : MonoBehaviour
         playerRef.PlayBackgroundMusic();
         playerRef.ToggleSoundEffectOK(true);
         Cursor.lockState = CursorLockMode.None;
+        this.gameObject.SetActive(false);
     }
 
 

@@ -18,6 +18,8 @@ TagManager:
   - Shuriken
   - WeaponDestroyPoint
   - Grass
+  - Coin
+  - PlayerPlatformer
   layers:
   - Default
   - TransparentFX

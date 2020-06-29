@@ -16,7 +16,7 @@ public class Player : MonoBehaviour
     private Animator playerAnimator;
     private float jumpTimeCountDown;
     [SerializeField] float jumpAvaiableTime;
-    public bool isdoublejumpOK;
+    private bool isdoublejumpOK;
     [SerializeField] GameObject deathMenu;
     private CircleCollider2D circleCollider;
     private BoxCollider2D boxCollider;

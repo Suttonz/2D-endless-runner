@@ -13,41 +13,42 @@ public class CameraShaker : MonoBehaviour
     [SerializeField] float amplitude;
     [SerializeField] float frequency;
     [SerializeField] Player_Platformer playerRef;
-    
+    private Vector3 ogPivotOffset;
+    [SerializeField] GameObject bloodSplatter;
 
+    public Coroutine StopRoutine { get; private set; }
 
     void Start()
     {
         cameraNoiseProfile = camera.GetCinemachineComponent<Cinemachine.CinemachineBasicMultiChannelPerlin>();
         playerRef = FindObjectOfType<Player_Platformer>();
-        
-       
+        //ogPivotOffset = cameraNoiseProfile.m_PivotOffset;
+
+
     }
 
     void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "PlayerPlatformer")
         {
-            isShaking = true;
+            ShakeCamera();
+            StopRoutine = null;
         }
-    }
-
-
-    void Update()
-    {
-        ShakeCamera();
+    
     }
 
 
     void ShakeCamera()
     {
-        if (isShaking)
-        {
+        
             playerRef.SwitchOffRigidbody();
             cameraNoiseProfile.m_AmplitudeGain = amplitude;
             cameraNoiseProfile.m_FrequencyGain = frequency;
-            StartCoroutine(StopShaking(2f));
-        }
+            bloodSplatter.SetActive(true);
+            if (StopRoutine == null)
+            {
+                StopRoutine = StartCoroutine(StopShaking(2f)); 
+            }
 
     }
 
@@ -58,5 +59,9 @@ public class CameraShaker : MonoBehaviour
         playerRef.SwitchOnRigidbody();
         cameraNoiseProfile.m_AmplitudeGain = 0f;
         cameraNoiseProfile.m_FrequencyGain = 0f;
+        //cameraNoiseProfile.m_PivotOffset = ogPivotOffset;
+        bloodSplatter.SetActive(false);
+        //Enable deathMenu after shake the camera
+        playerRef.Death();
     }
 }

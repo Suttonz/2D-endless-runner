@@ -20,6 +20,7 @@ TagManager:
   - Grass
   - Coin
   - PlayerPlatformer
+  - DeathTrigger
   layers:
   - Default
   - TransparentFX

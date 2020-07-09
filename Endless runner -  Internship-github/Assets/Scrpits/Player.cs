@@ -48,7 +48,6 @@ public class Player : MonoBehaviour
     void Start()
     {
 
-
         Time.timeScale = 0f;
         playerRigidbody = GetComponent<Rigidbody2D>();
         playerAnimator = GetComponent<Animator>();

@@ -56,7 +56,7 @@ public class TileGenerator: MonoBehaviour
             float objectYpos = Random.Range(objectYmin, objectYmax);
             spawnPosition = new Vector3(objectXpos, objectYpos, tilePosition.z);
             //Spawn random number of engery
-            objectSpawnerRef.SpawnEngery(spawnPosition);
+            objectSpawnerRef.SpawnEnergy(spawnPosition);
             
         }
     }

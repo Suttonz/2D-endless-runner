@@ -77,7 +77,6 @@ public class CameraMovement : MonoBehaviour
            camera.orthographicSize = Mathf.SmoothStep(cameraStaringSize, cameraFinishingSize, cameraChangingTime);
         }
 
-        
     }
 
      

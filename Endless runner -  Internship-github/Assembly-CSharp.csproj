@@ -79,7 +79,11 @@
     <Compile Include="Assets\Scrpits\ObjectSpawner.cs" />
     <Compile Include="Assets\Scrpits\PauseMenu.cs" />
     <Compile Include="Assets\Scrpits\PlatformerScrpits\CameraShaker.cs" />
+    <Compile Include="Assets\Scrpits\PlatformerScrpits\FollowPlayer.cs" />
+    <Compile Include="Assets\Scrpits\PlatformerScrpits\LiftBarFollowPlayer.cs" />
     <Compile Include="Assets\Scrpits\PlatformerScrpits\Player_Platformer.cs" />
+    <Compile Include="Assets\Scrpits\PlatformerScrpits\ReduceLife.cs" />
+    <Compile Include="Assets\Scrpits\PlatformerScrpits\Restart.cs" />
     <Compile Include="Assets\Scrpits\Player.cs" />
     <Compile Include="Assets\Scrpits\ResolutionManager.cs" />
     <Compile Include="Assets\Scrpits\ShurikenController.cs" />

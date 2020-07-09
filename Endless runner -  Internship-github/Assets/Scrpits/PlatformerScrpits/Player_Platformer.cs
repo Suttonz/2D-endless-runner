@@ -25,20 +25,29 @@ public class Player_Platformer : MonoBehaviour
     private bool isdoublejumpOK;
     [SerializeField] TextMeshProUGUI coinText;
     private int coinNum;
-   
+    [SerializeField] GameObject deathMenu;
+    private float life;
+    [SerializeField] Slider lifeBar;
+    [SerializeField] TextMeshProUGUI lifeText;
+
 
 
 
     void Start()
     {
+
+        deathMenu.SetActive(false);
+        Time.timeScale = 1f;
         playerRigidbody = GetComponent<Rigidbody2D>();
         playerScale = transform.localScale;
         playerAnimator = GetComponent<Animator>();
         capsuleCollider = GetComponent<CapsuleCollider2D>();
         circleCollider = GetComponent<CircleCollider2D>();
         playerGravity = playerRigidbody.gravityScale;
-        
-        
+        //life will be 100% when game start
+        life = 100f;
+        lifeBar.value = life;
+        lifeText.text = life.ToString();
     }
 
     
@@ -47,7 +56,12 @@ public class Player_Platformer : MonoBehaviour
         Run();
         Jump();
         Climb();
+        TriggerDeath();
+        lifeText.text = life.ToString();
     }
+
+
+    
 
     //detect if player can jump or not
     void OnCollisionEnter2D(Collision2D collision)
@@ -69,8 +83,20 @@ public class Player_Platformer : MonoBehaviour
                 Destroy(collision.gameObject);
             }
         }
+
+      
   
     }
+
+    public void Death()
+    {
+        Time.timeScale = 0f;
+        Cursor.visible = true;
+        lifeBar.gameObject.SetActive(false);
+        deathMenu.SetActive(true);
+        
+    }
+
 
     void OnCollisionExit2D(Collision2D collision)
     {
@@ -188,5 +214,53 @@ public class Player_Platformer : MonoBehaviour
     public void SwitchOnRigidbody()
     {
         playerRigidbody.bodyType = RigidbodyType2D.Dynamic;
+    }
+
+
+    public void IncreaseLife(float lifeNum)
+    {
+
+        life += lifeNum;
+        lifeBar.value += lifeNum;
+       
+
+        if (life >= 100f)
+        {
+            life = 100f;
+        }
+    }
+
+    public void ReduceLife(float lifeNum)
+    {
+        life -= lifeNum;
+        lifeBar.value -= lifeNum;
+       
+
+        if (life <= 0f)
+        {
+            life = 0f;
+        }
+    }
+
+    public void SetLife(float lifeRef)
+    {
+        life = lifeRef;
+        if(life > 100f)
+        {
+            life = 100f;
+        }
+    }
+
+    public void TriggerDeath()
+    {
+        if (life <= 0)
+        {
+            Death();
+        }
+    }
+
+    public Vector3 GetPositon()
+    {
+        return this.transform.position;
     }
 }

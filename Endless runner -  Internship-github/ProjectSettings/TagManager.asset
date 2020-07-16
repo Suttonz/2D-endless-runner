@@ -21,6 +21,8 @@ TagManager:
   - Coin
   - PlayerPlatformer
   - DeathTrigger
+  - Smoke
+  - Fire
   layers:
   - Default
   - TransparentFX

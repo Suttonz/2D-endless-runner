@@ -72,6 +72,8 @@ public class Player_Platformer : MonoBehaviour
             {
                 onTheGround = true;
             }
+            
+    
         }
 
         if (collision.collider.IsTouching(capsuleCollider))
@@ -195,7 +197,7 @@ public class Player_Platformer : MonoBehaviour
             {
                 playerRigidbody.velocity = new Vector2(playerRigidbody.velocity.x, -1 * climbSpeed);
             }
-            
+    
         } 
 
         if (!capsuleCollider.IsTouchingLayers(LayerMask.GetMask("Ladder")))

@@ -23,6 +23,11 @@ TagManager:
   - DeathTrigger
   - Smoke
   - Fire
+  - Right
+  - Left
+  - Mushroom
+  - LifeBottle
+  - FireDestroyPoint
   layers:
   - Default
   - TransparentFX

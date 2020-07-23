@@ -10,9 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 2320726338239824040}
   - component: {fileID: 6538903920091721148}
+  - component: {fileID: 185287799}
+  - component: {fileID: 185287800}
   m_Layer: 0
   m_Name: LifeBottle
-  m_TagString: Untagged
+  m_TagString: LifeBottle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -58,6 +60,39 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.2993493, y: 0.53530216}
   m_EdgeRadius: 0
+--- !u!50 &185287799
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1444452785236846627}
+  m_BodyType: 2
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!114 &185287800
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1444452785236846627}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c2b30b631ea0dd4b994d77507d6ff99, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5891812390221164787
 GameObject:
   m_ObjectHideFlags: 0
@@ -69,7 +104,6 @@ GameObject:
   - component: {fileID: 5891812390221164783}
   - component: {fileID: 5891812390221164782}
   - component: {fileID: 5891812390221164781}
-  - component: {fileID: 5891812390221164780}
   m_Layer: 0
   m_Name: LifeBottleChild
   m_TagString: Untagged
@@ -161,16 +195,3 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &5891812390221164780
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5891812390221164787}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5c2b30b631ea0dd4b994d77507d6ff99, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player_PlatformerRef: {fileID: 0}

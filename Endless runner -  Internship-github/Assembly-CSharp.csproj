@@ -62,6 +62,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\DestroyFire.cs" />
     <Compile Include="Assets\FireController.cs" />
     <Compile Include="Assets\Scrpits\AudioManager.cs" />
     <Compile Include="Assets\Scrpits\BackgroundControllor.cs" />
@@ -81,13 +82,16 @@
     <Compile Include="Assets\Scrpits\ObjectSpawner.cs" />
     <Compile Include="Assets\Scrpits\PauseMenu.cs" />
     <Compile Include="Assets\Scrpits\PlatformerScrpits\CameraShaker.cs" />
+    <Compile Include="Assets\Scrpits\PlatformerScrpits\FollowArrow.cs" />
     <Compile Include="Assets\Scrpits\PlatformerScrpits\FollowPlayer.cs" />
     <Compile Include="Assets\Scrpits\PlatformerScrpits\LifeBottle.cs" />
     <Compile Include="Assets\Scrpits\PlatformerScrpits\LiftBarFollowPlayer.cs" />
+    <Compile Include="Assets\Scrpits\PlatformerScrpits\MushroomController.cs" />
     <Compile Include="Assets\Scrpits\PlatformerScrpits\Player_Platformer.cs" />
     <Compile Include="Assets\Scrpits\PlatformerScrpits\ReduceLife.cs" />
     <Compile Include="Assets\Scrpits\PlatformerScrpits\Restart.cs" />
     <Compile Include="Assets\Scrpits\PlatformerScrpits\SmokeController.cs" />
+    <Compile Include="Assets\Scrpits\PlatformerScrpits\WarningFade.cs" />
     <Compile Include="Assets\Scrpits\Player.cs" />
     <Compile Include="Assets\Scrpits\ResolutionManager.cs" />
     <Compile Include="Assets\Scrpits\ShurikenController.cs" />
@@ -129,6 +133,8 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexShakeB.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexZoom.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\WarpTextExample.cs" />
+    <Compile Include="Assets\TurnDirection.cs" />
+    <Compile Include="Assets\WinMenu.cs" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro.cginc" />
     <None Include="Assets\Texture\Platformer\Free Pixel Art Forest\Free Pixel Art Forest\readme.txt" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Overlay.shader" />

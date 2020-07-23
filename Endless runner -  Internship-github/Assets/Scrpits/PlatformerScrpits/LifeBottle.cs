@@ -6,12 +6,12 @@ public class LifeBottle : MonoBehaviour
 {
     private Animator lifeBottleAnimator;
     private int lifeBottleCount = 2;
-    [SerializeField] Player_Platformer player_PlatformerRef;
+    private Player_Platformer player_PlatformerRef;
 
     void Start()
     {
         lifeBottleAnimator = GetComponentInChildren<Animator>();
-
+        player_PlatformerRef = FindObjectOfType<Player_Platformer>();
     }
 
     void Update()
@@ -21,8 +21,10 @@ public class LifeBottle : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
+        Debug.Log("Touch Player");
         if (collision.gameObject.tag == "PlayerPlatformer")
         {
+            
             lifeBottleAnimator.SetTrigger("Bounce");
             lifeBottleCount--;
         }

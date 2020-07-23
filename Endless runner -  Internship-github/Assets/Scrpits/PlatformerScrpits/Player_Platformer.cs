@@ -60,9 +60,6 @@ public class Player_Platformer : MonoBehaviour
         lifeText.text = life.ToString();
     }
 
-
-    
-
     //detect if player can jump or not
     void OnCollisionEnter2D(Collision2D collision)
     {
@@ -72,8 +69,12 @@ public class Player_Platformer : MonoBehaviour
             {
                 onTheGround = true;
             }
-            
-    
+            if(collision.collider.tag == "Mushroom")
+            {
+                collision.gameObject.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
+                collision.gameObject.GetComponent<Animator>().SetTrigger("Die");
+                Destroy(collision.gameObject, 0.5f);
+            }
         }
 
         if (collision.collider.IsTouching(capsuleCollider))
@@ -84,10 +85,22 @@ public class Player_Platformer : MonoBehaviour
                 coinText.text = coinNum.ToString();
                 Destroy(collision.gameObject);
             }
+
+            if(collision.gameObject.tag == "Mushroom")
+            {
+                Death();
+            }
         }
 
-      
-  
+       if (collision.collider.IsTouching(circleCollider) || collision.collider.IsTouching(capsuleCollider))
+        {
+            if(collision.gameObject.tag == "Left" || collision.gameObject.tag == "Right")
+            {
+                Physics2D.IgnoreCollision(collision.collider, circleCollider);
+                Physics2D.IgnoreCollision(collision.collider, capsuleCollider);
+            }
+        }
+
     }
 
     public void Death()
@@ -110,7 +123,11 @@ public class Player_Platformer : MonoBehaviour
                 onTheGround = false;
             }
         }
-   
+
+        if (collision.collider.IsTouching(capsuleCollider))
+        {
+            Death();
+        }
     }
 
     void Run()
@@ -134,10 +151,12 @@ public class Player_Platformer : MonoBehaviour
         
         //Stop running once play stop pressing left or right (A or D)
         if(Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.D))
-        {
+        {  
             playerAnimator.SetBool("Running", false);
             playerRigidbody.velocity = new Vector2(0, playerRigidbody.velocity.y);
         }
+
+        
 
     }
 

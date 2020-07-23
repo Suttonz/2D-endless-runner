@@ -18,5 +18,7 @@ public class FireController : MonoBehaviour
             player_PlatformerRef.ReduceLife(10f);
             Destroy(this.gameObject);
         }
+
+        
     }
 }

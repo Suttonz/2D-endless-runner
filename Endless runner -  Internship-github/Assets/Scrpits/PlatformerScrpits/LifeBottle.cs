@@ -19,12 +19,11 @@ public class LifeBottle : MonoBehaviour
         DestroyLifeBottle();
     }
 
-    void OnCollisionEnter2D(Collision2D collision)
+    void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("Touch Player");
+        
         if (collision.gameObject.tag == "PlayerPlatformer")
         {
-            
             lifeBottleAnimator.SetTrigger("Bounce");
             lifeBottleCount--;
         }

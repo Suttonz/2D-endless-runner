@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 704847607}
   m_Layer: 0
   m_Name: Player_Platformer 1
-  m_TagString: Untagged
+  m_TagString: PlayerPlatformer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -71,7 +71,7 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
-  m_RenderingLayerMask: 1
+  m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
@@ -161,8 +161,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.55, y: 0.725}
+  m_Offset: {x: 0, y: 0.032648563}
+  m_Size: {x: 0.55, y: 0.7032342}
   m_Direction: 0
 --- !u!58 &704847600
 CircleCollider2D:
@@ -177,9 +177,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.2793548}
+  m_Offset: {x: 0.009659767, y: -0.22}
   serializedVersion: 2
-  m_Radius: 0.110886574
+  m_Radius: 0.18816471
 --- !u!96 &704847607
 TrailRenderer:
   serializedVersion: 2

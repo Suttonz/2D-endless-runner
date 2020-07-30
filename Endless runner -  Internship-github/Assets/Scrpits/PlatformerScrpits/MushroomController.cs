@@ -31,6 +31,7 @@ public class MushroomController : MonoBehaviour
         mushroomRigidy.velocity = new Vector2(runSpeed, mushroomRigidy.velocity.y);
     }
 
+    
     void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.collider.IsTouching(boxCollider))
@@ -49,10 +50,11 @@ public class MushroomController : MonoBehaviour
             {
                 Physics2D.IgnoreCollision(collision.collider, mushroomCollider);
             }
-
+            
         }
     }
 
+   
     public void TurnLeft()
     {
         mushroomScale = transform.localScale;

@@ -29,7 +29,7 @@ public class Player_Platformer : MonoBehaviour
     private float life;
     [SerializeField] Slider lifeBar;
     [SerializeField] TextMeshProUGUI lifeText;
-
+    
 
 
 
@@ -58,6 +58,8 @@ public class Player_Platformer : MonoBehaviour
         Climb();
         TriggerDeath();
         lifeText.text = life.ToString();
+        coinText.text = coinNum.ToString();
+
     }
 
     //detect if player can jump or not
@@ -79,13 +81,7 @@ public class Player_Platformer : MonoBehaviour
 
         if (collision.collider.IsTouching(capsuleCollider))
         {
-            if(collision.gameObject.tag == "Coin")
-            {
-                coinNum++;
-                coinText.text = coinNum.ToString();
-                Destroy(collision.gameObject);
-            }
-
+           
             if(collision.gameObject.tag == "Mushroom")
             {
                 Death();
@@ -101,6 +97,20 @@ public class Player_Platformer : MonoBehaviour
             }
         }
 
+       
+
+    }
+
+    void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.collider.IsTouching(capsuleCollider))
+        {
+
+            if (collision.gameObject.tag == "Mushroom")
+            {
+                Death();
+            }
+        }
     }
 
     public void Death()
@@ -113,21 +123,9 @@ public class Player_Platformer : MonoBehaviour
     }
 
 
-    void OnCollisionExit2D(Collision2D collision)
+    private void OnCollisionExit(Collision collision)
     {
-
-        if(collision.collider.IsTouching(circleCollider))
-        {
-            if (collision.collider.gameObject.layer == LayerMask.NameToLayer("Grass"))
-            {
-                onTheGround = false;
-            }
-        }
-
-        if (collision.collider.IsTouching(capsuleCollider))
-        {
-            Death();
-        }
+        
     }
 
     void Run()
@@ -166,16 +164,38 @@ public class Player_Platformer : MonoBehaviour
         {
             if (onTheGround)
             {
+                
                 jumpTimeCountDown = jumpAvaiableTime;
                 isJumping = true;
-                playerRigidbody.velocity = new Vector2(playerRigidbody.velocity.x, jumpHeight);
-                isdoublejumpOK = true;
+                if (transform.localScale.x > 0)
+                {
+                    playerRigidbody.velocity = new Vector2(1.5f, jumpHeight);
+                    StartCoroutine(StopMoving());
+
+
+                }
+                else if(transform.localScale.x < 0)
+                {
+                    playerRigidbody.velocity = new Vector2(-1.5f, jumpHeight);
+                    StartCoroutine(StopMoving());
+                }
                 onTheGround = false;
+                isdoublejumpOK = true;
 
             }else if (isdoublejumpOK)
             {
                 jumpTimeCountDown = jumpAvaiableTime;
-                playerRigidbody.velocity = new Vector2(playerRigidbody.velocity.x, jumpHeight);
+                if (transform.localScale.x > 0)
+                {
+                    playerRigidbody.velocity = jumpHeight*0.8f * Vector2.one;
+                    StartCoroutine(StopMoving());
+
+                }
+                else if (transform.localScale.x < 0)
+                {
+                    playerRigidbody.velocity = new Vector2(-jumpHeight*0.8f, jumpHeight*0.8f);
+                    StartCoroutine(StopMoving());
+                }
                 isdoublejumpOK = false;
             }
         }
@@ -283,5 +303,17 @@ public class Player_Platformer : MonoBehaviour
     public Vector3 GetPositon()
     {
         return this.transform.position;
+    }
+
+    IEnumerator StopMoving()
+    {
+        yield return new WaitForSeconds(0.8f);
+        playerRigidbody.velocity = new Vector2(0, playerRigidbody.velocity.y);
+
+    }
+
+    public void AddCoin(int coin)
+    {
+        coinNum += coin;
     }
 }

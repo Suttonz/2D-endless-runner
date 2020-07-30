@@ -44,7 +44,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.020488977, y: 0.04169649}
@@ -103,7 +103,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5891812390221164783}
   - component: {fileID: 5891812390221164782}
-  - component: {fileID: 5891812390221164781}
+  - component: {fileID: 876073801}
   m_Layer: 0
   m_Name: LifeBottleChild
   m_TagString: Untagged
@@ -163,7 +163,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 12
+  m_SortingOrder: 11
   m_Sprite: {fileID: -2278132483611986928, guid: 73d600ed5acc75c40a67967caaa00957,
     type: 3}
   m_Color: {r: 0.07778571, g: 0.18431818, b: 0.7169812, a: 1}
@@ -176,7 +176,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!95 &5891812390221164781
+--- !u!95 &876073801
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 0

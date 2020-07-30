@@ -35,7 +35,6 @@ public class Player_Platformer : MonoBehaviour
 
     void Start()
     {
-
         deathMenu.SetActive(false);
         Time.timeScale = 1f;
         playerRigidbody = GetComponent<Rigidbody2D>();
@@ -51,15 +50,18 @@ public class Player_Platformer : MonoBehaviour
     }
 
     
-    void Update()
+    void FixedUpdate()
     {
         Run();
-        Jump();
         Climb();
+    }
+
+    void Update()
+    {
+        Jump();
         TriggerDeath();
         lifeText.text = life.ToString();
         coinText.text = coinNum.ToString();
-
     }
 
     //detect if player can jump or not
@@ -123,14 +125,26 @@ public class Player_Platformer : MonoBehaviour
     }
 
 
-    private void OnCollisionExit(Collision collision)
-    {
-        
-    }
-
     void Run()
     {
-        if (Input.GetKeyDown(KeyCode.A) && onTheGround)
+        
+        float direction = Input.GetAxis("Horizontal");
+        playerRigidbody.velocity = new Vector2(direction*runSpeed, playerRigidbody.velocity.y);
+        if (direction < 0)
+        {
+            playerScale.x = -1f;
+            transform.localScale = playerScale;
+            playerAnimator.SetBool("Running", true);
+        }
+
+        if (direction > 0)
+        {
+            playerScale.x = 1f;
+            transform.localScale = playerScale;
+            playerAnimator.SetBool("Running", true);
+        }
+
+       /* if (Input.GetKeyDown(KeyCode.A) && onTheGround)
         {   //turn left
             playerRigidbody.velocity = new Vector2(-runSpeed, playerRigidbody.velocity.y);
             playerScale.x = -1f;
@@ -145,16 +159,14 @@ public class Player_Platformer : MonoBehaviour
             playerScale.x = 1f;
             transform.localScale = playerScale;
             playerAnimator.SetBool("Running", true);
-        }
-        
-        //Stop running once play stop pressing left or right (A or D)
-        if(Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.D))
-        {  
+        }*/
+      
+        //Stop player moving around when something pushed it
+        if(onTheGround && !Input.anyKey)
+        {
             playerAnimator.SetBool("Running", false);
             playerRigidbody.velocity = new Vector2(0, playerRigidbody.velocity.y);
         }
-
-        
 
     }
 
@@ -167,35 +179,37 @@ public class Player_Platformer : MonoBehaviour
                 
                 jumpTimeCountDown = jumpAvaiableTime;
                 isJumping = true;
-                if (transform.localScale.x > 0)
+                playerRigidbody.velocity = Vector2.up * jumpHeight;
+               /* if (transform.localScale.x > 0)
                 {
-                    playerRigidbody.velocity = new Vector2(1.5f, jumpHeight);
+                    //playerRigidbody.velocity = new Vector2(1.5f, jumpHeight);
+                    playerRigidbody.velocity= jumpHeight * 0.6f * Vector2.one;
                     StartCoroutine(StopMoving());
-
-
                 }
                 else if(transform.localScale.x < 0)
                 {
-                    playerRigidbody.velocity = new Vector2(-1.5f, jumpHeight);
+                    //playerRigidbody.velocity = new Vector2(-1.5f, jumpHeight);
+                    playerRigidbody.velocity = new Vector2(-jumpHeight * 0.6f, jumpHeight * 0.6f);
                     StartCoroutine(StopMoving());
-                }
+                }*/
                 onTheGround = false;
                 isdoublejumpOK = true;
 
             }else if (isdoublejumpOK)
             {
                 jumpTimeCountDown = jumpAvaiableTime;
-                if (transform.localScale.x > 0)
+                playerRigidbody.velocity = Vector2.up * jumpHeight;
+              /*  if (transform.localScale.x > 0)
                 {
-                    playerRigidbody.velocity = jumpHeight*0.8f * Vector2.one;
+                    playerRigidbody.velocity = jumpHeight*0.6f * Vector2.one;
                     StartCoroutine(StopMoving());
 
                 }
                 else if (transform.localScale.x < 0)
                 {
-                    playerRigidbody.velocity = new Vector2(-jumpHeight*0.8f, jumpHeight*0.8f);
+                    playerRigidbody.velocity = new Vector2(-jumpHeight*0.6f, jumpHeight*0.6f);
                     StartCoroutine(StopMoving());
-                }
+                }*/
                 isdoublejumpOK = false;
             }
         }
@@ -260,7 +274,6 @@ public class Player_Platformer : MonoBehaviour
 
     public void IncreaseLife(float lifeNum)
     {
-
         life += lifeNum;
         lifeBar.value += lifeNum;
        

@@ -58,7 +58,7 @@ public class MushroomController : MonoBehaviour
     public void TurnLeft()
     {
         mushroomScale = transform.localScale;
-        mushroomScale.x = -3f;
+        mushroomScale.x = -mushroomScale.x;
         transform.localScale = mushroomScale;
         runSpeed = -1* runSpeedValue;
     }
@@ -66,7 +66,7 @@ public class MushroomController : MonoBehaviour
     public void TurnRight()
     {
         mushroomScale = transform.localScale;
-        mushroomScale.x = 3f;
+        mushroomScale.x = -mushroomScale.x;
         transform.localScale = mushroomScale;
         runSpeed = 1* runSpeedValue;
     }
